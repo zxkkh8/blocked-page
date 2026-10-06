@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>This site has been blocked</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background: #fff;
+    color: #202124;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 760px;
+    padding: 40px;
+}
+
+.content {
+    display: flex;
+    align-items: flex-start;
+    gap: 38px;
+}
+
+.warning {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+}
+
+.warning svg {
+    width: 72px;
+    height: 72px;
+}
+
+.text {
+    flex: 1;
+    min-width: 0;
+}
+
+h1 {
+    margin: 3px 0 18px;
+    font-size: 28px;
+    line-height: 1.3;
+    font-weight: 400;
+    color: #202124;
+}
+
+.message {
+    margin: 0 0 20px;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #5f6368;
+}
+
+.url {
+    margin: 0 0 28px;
+    color: #3c4043;
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.details {
+    margin: 0 0 26px;
+    color: #5f6368;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.error-code {
+    margin-top: 22px;
+    color: #80868b;
+    font-size: 12px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+button,
+a {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.back {
+    border: 0;
+    background: #1a73e8;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px 22px;
+    min-height: 38px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.back:hover {
+    background: #1765cc;
+}
+
+.request {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 38px;
+    padding: 0 18px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    color: #1a73e8;
+    background: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.request:hover {
+    background: #f8fafd;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 30px;
+    }
+
+    .content {
+        gap: 24px;
+    }
+
+    .warning,
+    .warning svg {
+        width: 56px;
+        height: 56px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 450px) {
+    .content {
+        display: block;
+    }
+
+    .warning {
+        margin-bottom: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="content">
+
+        <div class="warning">
+            <svg viewBox="0 0 72 72">
+                <path
+                    d="M36 5L68 62H4L36 5Z"
+                    fill="#fbbc04"
+                />
+
+                <path
+                    d="M36 22V43"
+                    stroke="#fff"
+                    stroke-width="5"
+                    stroke-linecap="round"
+                />
+
+                <circle
+                    cx="36"
+                    cy="53"
+                    r="2.8"
+                    fill="#fff"
+                />
+            </svg>
+        </div>
+
+        <div class="text">
+
+            <h1>This site has been blocked</h1>
+
+            <p class="message">
+                Your administrator has blocked access to this website.
+            </p>
+
+            <p class="url" id="blockedUrl">
+                Website access restricted
+            </p>
+
+            <p class="details">
+                If you think this website should be available,
+                contact your administrator or network administrator.
+            </p>
+
+            <div class="actions">
+
+                <button class="back" onclick="goBack()">
+                    Go back
+                </button>
+
+                <a
+                    class="request"
+                    href="mailto:admin@example.com?subject=Website%20Access%20Request"
+                >
+                    Request access
+                </a>
+
+            </div>
+
+            <div class="error-code">
+                ERR_BLOCKED_BY_ADMINISTRATOR
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+const site =
+    params.get("site") ||
+    params.get("url") ||
+    "Website access restricted";
+
+document.getElementById("blockedUrl").textContent = site;
+
+function goBack() {
+    if (window.history.length > 1) {
+        window.history.back();
+    } else {
+        window.location.href = "/";
+    }
+}
+</script>
+
+</body>
+</html>
